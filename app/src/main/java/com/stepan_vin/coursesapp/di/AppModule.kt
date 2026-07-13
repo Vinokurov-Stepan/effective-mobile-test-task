@@ -1,15 +1,15 @@
 package com.stepan_vin.coursesapp.di
 
-import android.app.Application
 import com.stepan_vin.coursesapp.core.database.di.databaseModule
 import com.stepan_vin.coursesapp.core.network.di.networkModule
 import com.stepan_vin.coursesapp.core.network.di.repositoryModule
-import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import org.koin.dsl.KoinAppDeclaration
 
-fun initKoin(application: Application) {
+fun initKoin(appDeclaration: KoinAppDeclaration? = null) {
+
     startKoin {
-        androidContext(application)
+        appDeclaration?.invoke(this)
         modules(
             networkModule,
             databaseModule,
