@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.stepan_vin.coursesapp.feature.main"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 24
