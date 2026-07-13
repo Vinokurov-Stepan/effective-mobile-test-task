@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.stepan_vin.coursesapp.core.database"
-    compileSdk = 37
+    namespace = "com.stepan_vin.coursesapp.core.domain"
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -22,10 +21,5 @@ android {
 
 dependencies {
     implementation(project(":core:common"))
-    implementation(project(":core:domain"))
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.koin.android)
 }

@@ -31,6 +31,8 @@ android {
 
 dependencies {
     implementation(project(":core:common"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:database"))
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
     implementation(libs.moshi.kotlin)

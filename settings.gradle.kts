@@ -28,6 +28,7 @@ include(":core:common")
 include(":core:network")
 include(":core:database")
 include(":core:designsystem")
+include(":core:domain")
 
 include(":feature:auth")
 include(":feature:main")
