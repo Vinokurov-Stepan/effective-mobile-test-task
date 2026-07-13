@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.stepan_vin.coursesapp"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.stepan_vin.coursesapp"
@@ -34,7 +34,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
     buildFeatures {
         compose = true
     }
