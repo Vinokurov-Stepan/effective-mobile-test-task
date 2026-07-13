@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Заголовки -->
+    <string name="auth_login_title">Вход</string>
+
+    <!-- Поля ввода -->
+    <string name="auth_email_label">Email</string>
+    <string name="auth_email_placeholder">example@gmail.com</string>
+    <string name="auth_password_label">Пароль</string>
+    <string name="auth_password_placeholder">Введите пароль</string>
+
+    <!-- Кнопки -->
+    <string name="auth_login_button">Вход</string>
+    <string name="auth_register_button">Нет аккаунта? Регистрация</string>
+    <string name="auth_forgot_password_button">Забыл пароль</string>
+    <string name="auth_vk_button">ВКонтакте</string>
+    <string name="auth_ok_button">Одноклассники</string>
+
+    <!-- URL для соцсетей -->
+    <string name="auth_vk_url">https://vk.com/</string>
+    <string name="auth_ok_url">https://ok.ru/</string>
+</resources>
