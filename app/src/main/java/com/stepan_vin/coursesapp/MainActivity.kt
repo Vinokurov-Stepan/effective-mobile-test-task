@@ -3,27 +3,30 @@ package com.stepan_vin.coursesapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.stepan_vin.coursesapp.ui.theme.СoursesAppTheme
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.stepan_vin.coursesapp.core.designsystem.theme.CourseAppTheme
+import com.stepan_vin.coursesapp.ui.navigation.BottomNavigationBar
+import com.stepan_vin.coursesapp.ui.navigation.NavGraph
+import com.stepan_vin.coursesapp.ui.navigation.Screen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            СoursesAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            CourseAppTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    CourseApp()
                 }
             }
         }
@@ -31,17 +34,32 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun CourseApp() {
+    val navController = rememberNavController()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    СoursesAppTheme {
-        Greeting("Android")
+    val currentDestination = navController
+        .currentBackStackEntryAsState()
+        .value
+        ?.destination
+        ?.route
+
+    val showBottomBar = when (currentDestination) {
+        Screen.Login.route -> false
+        null -> false
+        else -> true
+    }
+
+    Scaffold(
+        bottomBar = {
+            if (showBottomBar) {
+                BottomNavigationBar(navController = navController)
+            }
+        }
+    ) { innerPadding ->
+        NavGraph(
+            navController = navController,
+            startDestination = Screen.Login.route,
+            modifier = Modifier.padding(innerPadding)
+        )
     }
 }
