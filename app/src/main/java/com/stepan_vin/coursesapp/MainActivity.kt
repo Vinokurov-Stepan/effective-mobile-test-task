@@ -44,9 +44,10 @@ fun CourseApp() {
         ?.route
 
     val showBottomBar = when (currentDestination) {
-        Screen.Login.route -> false
-        null -> false
-        else -> true
+        Screen.Main.route -> true
+        Screen.Favorites.route -> true
+        Screen.Profile.route -> true
+        else -> false
     }
 
     Scaffold(
@@ -58,7 +59,6 @@ fun CourseApp() {
     ) { innerPadding ->
         NavGraph(
             navController = navController,
-            startDestination = Screen.Login.route,
             modifier = Modifier.padding(innerPadding)
         )
     }

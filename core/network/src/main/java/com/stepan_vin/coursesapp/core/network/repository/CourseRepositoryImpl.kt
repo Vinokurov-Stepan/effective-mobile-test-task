@@ -15,7 +15,9 @@ class CourseRepositoryImpl(
 ) : CourseRepository {
 
     override suspend fun getCourses(): List<Course> {
-        val courses = api.getCourses().toDomainList()
+        val response = api.getCourses()
+        val courses = response.courses.toDomainList()
+
         return courses.map { course ->
             course.copy(hasLike = dao.isFavorite(course.id))
         }
