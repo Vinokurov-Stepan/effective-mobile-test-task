@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Кнопки -->
+    <string name="details_back">Назад</string>
+    <string name="details_start_course">Начать курс</string>
+    <string name="details_go_to_platform">Перейти на платформу</string>
+
+    <!-- Автор -->
+    <string name="details_author_label">Автор</string>
+    <string name="details_author_name">%s</string>
+
+    <!-- Описание -->
+    <string name="details_about_title">О курсе</string>
+
+    <!-- Сердечко -->
+    <string name="details_favorite_add">Добавить в избранное</string>
+    <string name="details_favorite_remove">Удалить из избранного</string>
+</resources>

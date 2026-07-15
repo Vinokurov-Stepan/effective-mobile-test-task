@@ -6,6 +6,7 @@ import com.stepan_vin.coursesapp.core.domain.di.useCaseModule
 import com.stepan_vin.coursesapp.core.network.di.networkModule
 import com.stepan_vin.coursesapp.core.network.di.repositoryModule
 import com.stepan_vin.coursesapp.feature.auth.di.authModule
+import com.stepan_vin.coursesapp.feature.coursedetails.di.courseDetailsModule
 import com.stepan_vin.coursesapp.feature.favorites.di.favoritesModule
 import com.stepan_vin.coursesapp.feature.main.di.mainModule
 import com.stepan_vin.coursesapp.feature.profile.di.profileModule
@@ -24,7 +25,8 @@ fun initKoin(application: Application) {
             authModule,
             mainModule,
             favoritesModule,
-            profileModule
+            profileModule,
+            courseDetailsModule
         )
     }
 }

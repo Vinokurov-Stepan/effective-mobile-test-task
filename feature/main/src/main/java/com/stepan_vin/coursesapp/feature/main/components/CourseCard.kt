@@ -75,7 +75,7 @@ fun CourseCard(
 
                 Icon(
                     painter = painterResource(
-                        id = if (course.hasLike) R.drawable.notfavourite else R.drawable.isfavourite
+                        id = if (course.hasLike) R.drawable.isfavourite else R.drawable.notfavourite
                     ),
                     contentDescription = if (course.hasLike) {
                         stringResource(R.string.main_favorite_content_description_remove)
