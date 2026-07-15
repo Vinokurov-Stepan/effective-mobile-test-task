@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Заголовок -->
+    <string name="favorites_title">Избранное</string>
+
+    <!-- Состояния -->
+    <string name="favorites_error">Ошибка загрузки избранного</string>
+
+    <!-- Пустое состояние -->
+    <string name="favorites_empty">Нет избранных курсов</string>
+    <string name="favorites_empty_hint">Добавьте курсы в избранное на главном экране</string>
+</resources>
