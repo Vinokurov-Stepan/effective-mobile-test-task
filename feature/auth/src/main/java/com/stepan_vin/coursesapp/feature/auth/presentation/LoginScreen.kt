@@ -2,30 +2,38 @@ package com.stepan_vin.coursesapp.feature.auth.presentation
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
+import com.stepan_vin.coursesapp.core.designsystem.theme.CourseAppTheme
+import com.stepan_vin.coursesapp.core.designsystem.theme.CourseColors
+import com.stepan_vin.coursesapp.core.designsystem.theme.CourseTypography
 import com.stepan_vin.coursesapp.feature.auth.R
+import com.stepan_vin.coursesapp.feature.auth.components.AuthTextField
+import com.stepan_vin.coursesapp.feature.auth.components.SocialAuthButton
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -40,93 +48,176 @@ fun LoginScreen(
     val vkUrl = stringResource(R.string.auth_vk_url)
     val okUrl = stringResource(R.string.auth_ok_url)
 
+    LoginScreenContent(
+        email = email,
+        password = password,
+        isLoginEnabled = viewModel.isLoginEnabled,
+        onEmailChange = viewModel::onEmailChange,
+        onPasswordChange = viewModel::onPasswordChange,
+        onLoginClick = onLoginSuccess,
+        onVkClick = { openBrowser(context, vkUrl) },
+        onOkClick = { openBrowser(context, okUrl) }
+    )
+}
+
+@Composable
+fun LoginScreenContent(
+    email: String,
+    password: String,
+    isLoginEnabled: Boolean,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    onLoginClick: () -> Unit,
+    onVkClick: () -> Unit,
+    onOkClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.Center
+            .padding(horizontal = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(100.dp))
+
         Text(
             text = stringResource(R.string.auth_login_title),
-            fontSize = 28.sp
+            style = CourseTypography.headlineLarge.copy(
+                color = CourseColors.TextPrimary
+            ),
+            modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(28.dp))
 
-        OutlinedTextField(
+        AuthTextField(
             value = email,
-            onValueChange = viewModel::onEmailChange,
-            label = { Text(stringResource(R.string.auth_email_label)) },
-            placeholder = { Text(stringResource(R.string.auth_email_placeholder)) },
+            onValueChange = onEmailChange,
+            labelResId = R.string.auth_email_label,
+            placeholderResId = R.string.auth_email_placeholder,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            isError = viewModel.showError(email)
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedTextField(
+        AuthTextField(
             value = password,
-            onValueChange = viewModel::onPasswordChange,
-            label = { Text(stringResource(R.string.auth_password_label)) },
-            placeholder = { Text(stringResource(R.string.auth_password_placeholder)) },
-            visualTransformation = PasswordVisualTransformation(),
+            onValueChange = onPasswordChange,
+            labelResId = R.string.auth_password_label,
+            placeholderResId = R.string.auth_password_placeholder,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
+            visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = onLoginSuccess,
-            enabled = viewModel.isLoginEnabled,
-            modifier = Modifier.fillMaxWidth()
+            onClick = onLoginClick,
+            enabled = isLoginEnabled,
+            modifier = modifier
+                .fillMaxWidth()
+                .height(40.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = CourseColors.Green,
+                disabledContainerColor = CourseColors.Green.copy(alpha = 0.5f)
+            ),
+            shape = RoundedCornerShape(20.dp)
         ) {
-            Text(stringResource(R.string.auth_login_button))
+            Text(
+                text = stringResource(R.string.auth_login_button),
+                style = CourseTypography.labelMedium.copy(
+                    color = CourseColors.TextPrimary
+                )
+            )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        TextButton(
-            onClick = {},
-            enabled = false,
-            modifier = Modifier.fillMaxWidth()
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
         ) {
-            Text(stringResource(R.string.auth_register_button))
+            Text(
+                text = stringResource(R.string.auth_register_prefix),
+                style = CourseTypography.bodySmall.copy(
+                    color = CourseColors.TextPrimary
+                )
+            )
+
+            Text(
+                text = stringResource(R.string.auth_register_button),
+                style = CourseTypography.bodySmall.copy(
+                    color = CourseColors.Green
+                ),
+                modifier = Modifier
+                    .clickable {}
+                    .padding(start = 5.dp)
+            )
         }
 
-        TextButton(
-            onClick = {},
-            enabled = false,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(stringResource(R.string.auth_forgot_password_button))
-        }
+        Text(
+            text = stringResource(R.string.auth_forgot_password_button),
+            style = CourseTypography.bodySmall.copy(
+                color = CourseColors.Green
+            ),
+            modifier = Modifier
+                .clickable {}
+                .padding(top = 8.dp)
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        Button(
-            onClick = { openBrowser(context, vkUrl) },
+        HorizontalDivider(
+            thickness = 1.dp,
+            color = CourseColors.Divider
+        )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors()
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(stringResource(R.string.auth_vk_button))
-        }
+            SocialAuthButton(
+                onClick = onVkClick,
+                gradient = CourseColors.BlueGradient,
+                iconResId = R.drawable.vk_icon,
+                modifier = Modifier.weight(1f)
+            )
 
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Button(
-            onClick = { openBrowser(context, okUrl) },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(stringResource(R.string.auth_ok_button))
+            SocialAuthButton(
+                onClick = onOkClick,
+                gradient = CourseColors.OrangeGradient,
+                iconResId = R.drawable.ok_icon,
+                modifier = Modifier.weight(1f)
+            )
         }
     }
 }
 
 private fun openBrowser(context: Context, url: String) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
     context.startActivity(intent)
+}
+
+@Preview(
+    name = "Login Screen",
+    showSystemUi = false
+)
+@Composable
+private fun LoginScreenPreview() {
+    CourseAppTheme {
+        LoginScreenContent(
+            email = "user@example.com",
+            password = "secure_password",
+            isLoginEnabled = true,
+            onEmailChange = {},
+            onPasswordChange = {},
+            onLoginClick = {},
+            onVkClick = {},
+            onOkClick = {}
+        )
+    }
 }

@@ -1,29 +1,33 @@
 package com.stepan_vin.coursesapp.core.designsystem.theme
 
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 object CourseColors {
-    // Основные цвета
-    val Green = Color(0xFF4CAF50)
-    val Primary = Color(0xFF2196F3)
-    val PrimaryDark = Color(0xFF1976D2)
-    val PrimaryLight = Color(0xFFBBDEFB)
-
-    // Текст
-    val TextPrimary = Color(0xFF212121)
-    val TextSecondary = Color(0xFF757575)
-    val TextHint = Color(0xFF9E9E9E)
-
-    // Фон
-    val Background = Color(0xFFFFFFFF)
-    val Surface = Color(0xFFF5F5F5)
-
-    // Дополнительные
+    val Background = Color(0xFF151515)
+    val Surface = Color(0xFF24252A)
+    val TextFieldBackground = Color(0xFF32333A)
+    val TextPrimary = Color(0xFFF2F2F3)
+    val TextSecondary = Color(0xFFF2F2F3)
+    val TextHint = Color(0xFF8A8B90)
+    val Divider = Color(0xFF4D555E)
+    val Green = Color(0xFF12B956)
+    val BlueGradient = Brush.verticalGradient(
+        colors = listOf(
+            Color(0xFF2683ED),
+            Color(0xFF2683ED)
+        )
+    )
+    val OrangeGradient = Brush.verticalGradient(
+        colors = listOf(
+            Color(0xFFF98509),
+            Color(0xFFF95D00)
+        )
+    )
+    val Primary = Green
+    val PrimaryDark = Color(0xFF0E8F42)
+    val PrimaryLight = Color(0xFF5CE08A)
     val Error = Color(0xFFE53935)
-    val Success = Color(0xFF43A047)
-    val Warning = Color(0xFFFFB300)
-
-    // Черный/Белый
-    val Black = Color(0xFF000000)
+    val Success = Green
     val White = Color(0xFFFFFFFF)
 }
