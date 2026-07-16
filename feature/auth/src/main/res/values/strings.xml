@@ -11,7 +11,8 @@
 
     <!-- Кнопки -->
     <string name="auth_login_button">Вход</string>
-    <string name="auth_register_button">Нет аккаунта? Регистрация</string>
+    <string name="auth_register_prefix">Нет аккаунта? </string>
+    <string name="auth_register_button">Регистрация</string>
     <string name="auth_forgot_password_button">Забыл пароль</string>
     <string name="auth_vk_button">ВКонтакте</string>
     <string name="auth_ok_button">Одноклассники</string>

@@ -6,6 +6,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.stepan_vin.coursesapp.R
@@ -18,17 +19,17 @@ fun BottomNavigationBar(
     val items = listOf(
         BottomNavItem(
             route = Screen.Main.route,
-            title = "Главная",
+            title = stringResource(R.string.main_tab),
             icon = R.drawable.mainscreen
         ),
         BottomNavItem(
             route = Screen.Favorites.route,
-            title = "Избранное",
+            title = stringResource(R.string.favourite_tab),
             icon = R.drawable.favouritescreen
         ),
         BottomNavItem(
             route = Screen.Profile.route,
-            title = "Аккаунт",
+            title = stringResource(R.string.profile_tab),
             icon = R.drawable.profilescreen
         )
     )
