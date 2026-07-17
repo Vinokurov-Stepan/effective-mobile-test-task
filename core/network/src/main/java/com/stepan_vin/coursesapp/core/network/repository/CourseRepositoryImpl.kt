@@ -69,6 +69,10 @@ class CourseRepositoryImpl(
         }
     }
 
+    override fun getFavoriteIds(): Flow<List<Int>> {
+        return dao.getAllIds()
+    }
+
     override suspend fun isFavorite(courseId: Int): Boolean {
         return dao.isFavorite(courseId)
     }

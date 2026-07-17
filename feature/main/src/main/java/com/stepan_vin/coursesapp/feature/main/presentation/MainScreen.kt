@@ -332,34 +332,6 @@ private fun MainScreenPreview() {
 }
 
 @Preview(
-    name = "Main Screen (Empty State)",
-    showSystemUi = false
-)
-@Composable
-private fun MainScreenEmptyPreview() {
-    CourseAppTheme {
-        val mockState = MainState(
-            isLoading = false,
-            courses = emptyList(),
-            isError = false,
-            isSortingEnabled = false,
-            isDataLoaded = true
-        )
-
-        val listState = rememberLazyListState()
-
-        MainScreenContent(
-            state = mockState,
-            listState = listState,
-            onSortToggle = {},
-            onRetry = {},
-            onFavoriteClick = {},
-            onCourseClick = {}
-        )
-    }
-}
-
-@Preview(
     name = "Main Screen (Loading State)",
     showSystemUi = false
 )
@@ -398,6 +370,34 @@ private fun MainScreenErrorPreview() {
             isLoading = false,
             courses = emptyList(),
             isError = true,
+            isSortingEnabled = false,
+            isDataLoaded = true
+        )
+
+        val listState = rememberLazyListState()
+
+        MainScreenContent(
+            state = mockState,
+            listState = listState,
+            onSortToggle = {},
+            onRetry = {},
+            onFavoriteClick = {},
+            onCourseClick = {}
+        )
+    }
+}
+
+@Preview(
+    name = "Main Screen (Empty State)",
+    showSystemUi = false
+)
+@Composable
+private fun MainScreenEmptyPreview() {
+    CourseAppTheme {
+        val mockState = MainState(
+            isLoading = false,
+            courses = emptyList(),
+            isError = false,
             isSortingEnabled = false,
             isDataLoaded = true
         )

@@ -8,4 +8,5 @@ interface CourseRepository {
     suspend fun toggleFavorite(courseId: Int)
     fun getFavorites(): Flow<List<Course>>
     suspend fun isFavorite(courseId: Int): Boolean
+    fun getFavoriteIds(): Flow<List<Int>>
 }

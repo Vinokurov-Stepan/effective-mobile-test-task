@@ -2,6 +2,7 @@ package com.stepan_vin.coursesapp.feature.main.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.stepan_vin.coursesapp.core.domain.repository.CourseRepository
 import com.stepan_vin.coursesapp.core.domain.usecase.GetCoursesUseCase
 import com.stepan_vin.coursesapp.core.domain.usecase.ToggleFavoriteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val getCoursesUseCase: GetCoursesUseCase,
-    private val toggleFavoriteUseCase: ToggleFavoriteUseCase
+    private val toggleFavoriteUseCase: ToggleFavoriteUseCase,
+    private val repository: CourseRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(MainState())
@@ -20,6 +22,7 @@ class MainViewModel(
 
     init {
         loadCourses()
+        observeFavorites()
     }
 
     fun loadCourses() {
@@ -42,6 +45,19 @@ class MainViewModel(
                         isLoading = false,
                         isError = true
                     )
+                }
+            }
+        }
+    }
+
+    private fun observeFavorites() {
+        viewModelScope.launch {
+            repository.getFavoriteIds().collect { favoriteIds ->
+                _state.update { state ->
+                    val updatedCourses = state.originalCourses.map { course ->
+                        course.copy(hasLike = favoriteIds.contains(course.id))
+                    }
+                    state.copy(originalCourses = updatedCourses).withAppliedSorting()
                 }
             }
         }
