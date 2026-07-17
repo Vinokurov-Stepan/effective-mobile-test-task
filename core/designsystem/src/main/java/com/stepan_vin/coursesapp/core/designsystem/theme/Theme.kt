@@ -4,18 +4,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 private val LightColorScheme = lightColorScheme(
-    primary = CourseColors.Primary,
-    onPrimary = CourseColors.White,
+    primary = CourseColors.Green,
+    onPrimary = CourseColors.TextSecondary,
     primaryContainer = CourseColors.PrimaryLight,
     onPrimaryContainer = CourseColors.PrimaryDark,
 
     secondary = CourseColors.Green,
-    onSecondary = CourseColors.White,
-    secondaryContainer = CourseColors.Success.copy(alpha = 0.2f),
-    onSecondaryContainer = CourseColors.Success,
+    onSecondary = CourseColors.TextSecondary,
+    secondaryContainer = CourseColors.Green.copy(alpha = 0.2f),
+    onSecondaryContainer = CourseColors.Green,
 
     background = CourseColors.Background,
     onBackground = CourseColors.TextPrimary,
@@ -23,10 +24,47 @@ private val LightColorScheme = lightColorScheme(
     surface = CourseColors.Surface,
     onSurface = CourseColors.TextPrimary,
 
-    error = CourseColors.Error,
-    onError = CourseColors.White,
-
     surfaceVariant = CourseColors.Surface
+)
+
+data class CustomColors(
+    val textFieldBackground: Color,
+    val bookmarkBackground: Color,
+    val textSecondary: Color,
+    val textHint: Color,
+    val divider: Color,
+    val searchBackground: Color,
+    val blueGradientStart: Color,
+    val blueGradientEnd: Color,
+    val orangeGradientStart: Color,
+    val orangeGradientEnd: Color
+)
+
+val CustomColorScheme = CustomColors(
+    textFieldBackground = CourseColors.TextFieldBackground,
+    bookmarkBackground = CourseColors.BookmarkBackground,
+    textSecondary = CourseColors.TextSecondary,
+    textHint = CourseColors.TextHint,
+    divider = CourseColors.Divider,
+    searchBackground = CourseColors.SearchBackground,
+    blueGradientStart = CourseColors.BlueGradientStart,
+    blueGradientEnd = CourseColors.BlueGradientEnd,
+    orangeGradientStart = CourseColors.OrangeGradientStart,
+    orangeGradientEnd = CourseColors.OrangeGradientEnd
+)
+
+val blueGradient = Brush.verticalGradient(
+    colors = listOf(
+        CustomColorScheme.blueGradientStart,
+        CustomColorScheme.blueGradientEnd
+    )
+)
+
+val orangeGradient = Brush.verticalGradient(
+    colors = listOf(
+        CustomColorScheme.orangeGradientStart,
+        CustomColorScheme.orangeGradientEnd
+    )
 )
 
 @Composable
@@ -42,16 +80,30 @@ fun CourseAppTheme(
 
 @Composable
 fun textFieldColors() = TextFieldDefaults.colors(
-    focusedContainerColor = CourseColors.TextFieldBackground,
-    unfocusedContainerColor = CourseColors.TextFieldBackground,
-    disabledContainerColor = CourseColors.TextFieldBackground,
+    focusedContainerColor = CustomColorScheme.textFieldBackground,
+    unfocusedContainerColor = CustomColorScheme.textFieldBackground,
+    disabledContainerColor = CustomColorScheme.textFieldBackground,
     focusedTextColor = CourseColors.TextPrimary,
     unfocusedTextColor = CourseColors.TextPrimary,
     disabledTextColor = CourseColors.TextPrimary,
-    focusedPlaceholderColor = CourseColors.TextHint,
-    unfocusedPlaceholderColor = CourseColors.TextHint,
-    disabledPlaceholderColor = CourseColors.TextHint,
+    focusedPlaceholderColor = CustomColorScheme.textHint,
+    unfocusedPlaceholderColor = CustomColorScheme.textHint,
+    disabledPlaceholderColor = CustomColorScheme.textHint,
     focusedIndicatorColor = Color.Transparent,
     unfocusedIndicatorColor = Color.Transparent,
     disabledIndicatorColor = Color.Transparent
 )
+
+@Composable
+fun searchFieldColors() = TextFieldDefaults.colors(
+    focusedContainerColor = CustomColorScheme.searchBackground,
+    unfocusedContainerColor = CustomColorScheme.searchBackground,
+    disabledContainerColor = CustomColorScheme.searchBackground,
+    focusedIndicatorColor = Color.Transparent,
+    unfocusedIndicatorColor = Color.Transparent,
+    disabledIndicatorColor = Color.Transparent
+)
+
+val MaterialTheme.customColors: CustomColors
+    @Composable
+    get() = CustomColorScheme

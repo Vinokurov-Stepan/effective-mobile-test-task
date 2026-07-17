@@ -10,13 +10,8 @@
     <!-- Состояния -->
     <string name="main_error">Ошибка загрузки курсов</string>
     <string name="main_empty">Курсы не найдены</string>
-    <string name="main_retry">Повторить</string>
+    <string name="main_retry">Повторный поиск</string>
 
     <!-- Карточка курса -->
-    <string name="main_details_button">Подробнее →</string>
-    <string name="main_favorite_content_description_add">Добавить в избранное</string>
-    <string name="main_favorite_content_description_remove">В избранном</string>
-
-    <!-- Фильтр -->
-    <string name="main_filter_content_description">Фильтр</string>
+    <string name="main_details_button">Подробнее</string>
 </resources>

@@ -64,7 +64,7 @@ fun ProfileScreen() {
         ProfileMenuItem(
             title = stringResource(R.string.profile_logout),
             onClick = {},
-            textColor = CourseColors.Error
+            textColor = CourseColors.TextSecondary
         )
 
         Spacer(modifier = Modifier.height(24.dp))

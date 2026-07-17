@@ -15,12 +15,28 @@ val CourseTypography = Typography(
         letterSpacing = 0.sp
     ),
 
+    headlineSmall = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.4.sp
+    ),
+
     titleMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         lineHeight = 18.sp,
         letterSpacing = 0.15.sp
+    ),
+
+    titleSmall = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 12.sp,
+        lineHeight = 15.sp,
+        letterSpacing = 0.4.sp
     ),
 
     bodyMedium = TextStyle(
@@ -47,38 +63,11 @@ val CourseTypography = Typography(
         letterSpacing = 0.1.sp
     ),
 
-
-    // ═══════════════════════════════════════════
-    //  Кнопки-ссылки (Регистрация, Забыли пароль?)
-    // ═══════════════════════════════════════════
-
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.SemiBold,  // 600 — SemiBold
+        fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
-        lineHeight = 15.sp,
-        letterSpacing = 0.4.sp,
-        color = CourseColors.Primary  // #12B956 (зеленый)
-    ),
-
-    // ═══════════════════════════════════════════
-    //  Остальные стили
-    // ═══════════════════════════════════════════
-
-    headlineMedium = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
-        lineHeight = 32.sp,
-        letterSpacing = 0.sp,
-        color = CourseColors.TextPrimary
-    ),
-    headlineSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp,
-        color = CourseColors.TextPrimary
+        lineHeight = 14.sp,
+        letterSpacing = 0.4.sp
     )
 )
