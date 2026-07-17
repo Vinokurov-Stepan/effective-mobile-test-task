@@ -20,6 +20,9 @@ interface FavoriteCourseDao {
     @Query("SELECT * FROM favorites")
     fun getAll(): Flow<List<FavoriteCourseEntity>>
 
+    @Query("SELECT id FROM favorites")
+    fun getAllIds(): Flow<List<Int>>
+
     @Query("SELECT EXISTS(SELECT 1 FROM favorites WHERE id = :courseId)")
     suspend fun isFavorite(courseId: Int): Boolean
 }

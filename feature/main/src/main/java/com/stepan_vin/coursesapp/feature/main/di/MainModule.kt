@@ -8,7 +8,8 @@ val mainModule = module {
     viewModel {
         MainViewModel(
             getCoursesUseCase = get(),
-            toggleFavoriteUseCase = get()
+            toggleFavoriteUseCase = get(),
+            repository = get()
         )
     }
 }

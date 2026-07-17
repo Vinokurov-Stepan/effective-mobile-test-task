@@ -6,5 +6,5 @@ data class FavoritesState(
     val isLoading: Boolean = true,
     val courses: List<Course> = emptyList(),
     val isEmpty: Boolean = false,
-    val error: String? = null
+    val isError: Boolean = false
 )
