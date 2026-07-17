@@ -115,7 +115,7 @@ fun CourseDetailsScreen(
                         text = "Ошибка: ${state.error}",
                         style = TextStyle(
                             fontSize = 16.sp,
-                            color = CourseColors.Error
+                            color = CourseColors.TextSecondary
                         )
                     )
                 }
@@ -171,7 +171,7 @@ fun CourseDetailsScreen(
                             .weight(1f)
                             .padding(end = 8.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = CourseColors.Primary
+                            containerColor = CourseColors.TextSecondary
                         ),
                         shape = RoundedCornerShape(12.dp)
                     ) {
@@ -185,7 +185,7 @@ fun CourseDetailsScreen(
                             .padding(start = 8.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = CourseColors.Surface,
-                            contentColor = CourseColors.Primary
+                            contentColor = CourseColors.TextSecondary
                         ),
                         shape = RoundedCornerShape(12.dp)
                     ) {
@@ -199,7 +199,7 @@ fun CourseDetailsScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-                    colors = CardDefaults.cardColors(containerColor = CourseColors.White)
+                    colors = CardDefaults.cardColors(containerColor = CourseColors.TextSecondary)
                 ) {
                     Column(
                         modifier = Modifier

@@ -6,7 +6,7 @@ data class MainState(
     val isLoading: Boolean = false,
     val courses: List<Course> = emptyList(),
     val originalCourses: List<Course> = emptyList(),
-    val error: String? = null,
+    val isError: Boolean = false,
     val isSortingEnabled: Boolean = false,
     val isDataLoaded: Boolean = false
 )

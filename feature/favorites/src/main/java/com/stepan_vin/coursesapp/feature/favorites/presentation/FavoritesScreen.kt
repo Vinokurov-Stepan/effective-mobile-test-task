@@ -73,7 +73,7 @@ fun FavoritesScreen(
                         Text(
                             text = "${stringResource(R.string.favorites_error)}: ${state.error}",
                             style = CourseTypography.bodyMedium.copy(
-                                color = CourseColors.Error
+                                color = CourseColors.TextSecondary
                             )
                         )
                     }

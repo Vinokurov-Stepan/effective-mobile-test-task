@@ -25,14 +25,14 @@ class MainViewModel(
     fun loadCourses() {
         if (_state.value.isDataLoaded) return
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true, error = null) }
+            _state.update { it.copy(isLoading = true, isError = false) }
             try {
                 val courses = getCoursesUseCase()
                 _state.update { currentState ->
                     currentState.copy(
                         isLoading = false,
                         originalCourses = courses,
-                        error = null,
+                        isError = false,
                         isDataLoaded = true
                     ).withAppliedSorting()
                 }
@@ -40,7 +40,7 @@ class MainViewModel(
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        error = e.message ?: "Ошибка загрузки курсов"
+                        isError = true
                     )
                 }
             }
@@ -56,18 +56,18 @@ class MainViewModel(
     }
 
     fun toggleFavorite(courseId: Int) {
+        _state.update { currentState ->
+            val updatedOriginal = currentState.originalCourses.map { course ->
+                if (course.id == courseId) {
+                    course.copy(hasLike = !course.hasLike)
+                } else {
+                    course
+                }
+            }
+            currentState.copy(originalCourses = updatedOriginal).withAppliedSorting()
+        }
         viewModelScope.launch {
             toggleFavoriteUseCase(courseId)
-            _state.update { currentState ->
-                val updatedOriginal = currentState.originalCourses.map { course ->
-                    if (course.id == courseId) {
-                        course.copy(hasLike = !course.hasLike)
-                    } else {
-                        course
-                    }
-                }
-                currentState.copy(originalCourses = updatedOriginal).withAppliedSorting()
-            }
         }
     }
 

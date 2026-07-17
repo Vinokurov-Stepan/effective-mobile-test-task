@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,8 +20,8 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import com.stepan_vin.coursesapp.core.designsystem.theme.CourseColors
 import com.stepan_vin.coursesapp.core.designsystem.theme.CourseTypography
+import com.stepan_vin.coursesapp.core.designsystem.theme.customColors
 import com.stepan_vin.coursesapp.core.designsystem.theme.textFieldColors
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,7 +42,7 @@ fun AuthTextField(
         Text(
             text = stringResource(labelResId),
             style = CourseTypography.titleMedium.copy(
-                color = CourseColors.TextPrimary
+                color = MaterialTheme.colorScheme.onBackground
             ),
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -53,13 +54,13 @@ fun AuthTextField(
                 .fillMaxWidth()
                 .height(40.dp),
             textStyle = CourseTypography.bodyMedium.copy(
-                color = CourseColors.TextPrimary
+                color = MaterialTheme.colorScheme.onBackground
             ),
             keyboardOptions = keyboardOptions,
             visualTransformation = visualTransformation,
             interactionSource = interactionSource,
             singleLine = true,
-            cursorBrush = SolidColor(CourseColors.TextPrimary),
+            cursorBrush = SolidColor(MaterialTheme.colorScheme.onBackground),
             decorationBox = { innerTextField ->
                 OutlinedTextFieldDefaults.DecorationBox(
                     value = value,
@@ -73,7 +74,7 @@ fun AuthTextField(
                         Text(
                             text = stringResource(placeholderResId),
                             style = CourseTypography.bodyMedium.copy(
-                                color = CourseColors.TextHint
+                                color = MaterialTheme.customColors.textHint
                             )
                         )
                     },

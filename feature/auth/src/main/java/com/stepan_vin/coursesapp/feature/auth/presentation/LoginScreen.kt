@@ -16,6 +16,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,8 +30,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import com.stepan_vin.coursesapp.core.designsystem.theme.CourseAppTheme
-import com.stepan_vin.coursesapp.core.designsystem.theme.CourseColors
 import com.stepan_vin.coursesapp.core.designsystem.theme.CourseTypography
+import com.stepan_vin.coursesapp.core.designsystem.theme.blueGradient
+import com.stepan_vin.coursesapp.core.designsystem.theme.customColors
+import com.stepan_vin.coursesapp.core.designsystem.theme.orangeGradient
 import com.stepan_vin.coursesapp.feature.auth.R
 import com.stepan_vin.coursesapp.feature.auth.components.AuthTextField
 import com.stepan_vin.coursesapp.feature.auth.components.SocialAuthButton
@@ -83,7 +86,7 @@ fun LoginScreenContent(
         Text(
             text = stringResource(R.string.auth_login_title),
             style = CourseTypography.headlineLarge.copy(
-                color = CourseColors.TextPrimary
+                color = MaterialTheme.colorScheme.onBackground
             ),
             modifier = Modifier.fillMaxWidth()
         )
@@ -120,15 +123,15 @@ fun LoginScreenContent(
                 .fillMaxWidth()
                 .height(40.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = CourseColors.Green,
-                disabledContainerColor = CourseColors.Green.copy(alpha = 0.5f)
+                containerColor = MaterialTheme.colorScheme.primary,
+                disabledContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
             ),
             shape = RoundedCornerShape(20.dp)
         ) {
             Text(
                 text = stringResource(R.string.auth_login_button),
                 style = CourseTypography.labelMedium.copy(
-                    color = CourseColors.TextPrimary
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             )
         }
@@ -142,14 +145,14 @@ fun LoginScreenContent(
             Text(
                 text = stringResource(R.string.auth_register_prefix),
                 style = CourseTypography.bodySmall.copy(
-                    color = CourseColors.TextPrimary
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             )
 
             Text(
                 text = stringResource(R.string.auth_register_button),
                 style = CourseTypography.bodySmall.copy(
-                    color = CourseColors.Green
+                    color = MaterialTheme.colorScheme.primary
                 ),
                 modifier = Modifier
                     .clickable {}
@@ -160,7 +163,7 @@ fun LoginScreenContent(
         Text(
             text = stringResource(R.string.auth_forgot_password_button),
             style = CourseTypography.bodySmall.copy(
-                color = CourseColors.Green
+                color = MaterialTheme.colorScheme.primary
             ),
             modifier = Modifier
                 .clickable {}
@@ -171,7 +174,7 @@ fun LoginScreenContent(
 
         HorizontalDivider(
             thickness = 1.dp,
-            color = CourseColors.Divider
+            color = MaterialTheme.customColors.divider
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -182,14 +185,14 @@ fun LoginScreenContent(
         ) {
             SocialAuthButton(
                 onClick = onVkClick,
-                gradient = CourseColors.BlueGradient,
+                gradient = blueGradient,
                 iconResId = R.drawable.vk_icon,
                 modifier = Modifier.weight(1f)
             )
 
             SocialAuthButton(
                 onClick = onOkClick,
-                gradient = CourseColors.OrangeGradient,
+                gradient = orangeGradient,
                 iconResId = R.drawable.ok_icon,
                 modifier = Modifier.weight(1f)
             )

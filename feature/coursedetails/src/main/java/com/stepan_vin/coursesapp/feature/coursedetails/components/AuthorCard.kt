@@ -35,7 +35,7 @@ fun AuthorCard(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        colors = CardDefaults.cardColors(containerColor = CourseColors.White)
+        colors = CardDefaults.cardColors(containerColor = CourseColors.TextSecondary)
     ) {
         Row(
             modifier = Modifier

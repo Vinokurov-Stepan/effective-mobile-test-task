@@ -1,6 +1,7 @@
 package com.stepan_vin.coursesapp.core.network.mappers
 
 import com.stepan_vin.coursesapp.core.common.models.Course
+import com.stepan_vin.coursesapp.core.common.utils.formatDate
 import com.stepan_vin.coursesapp.core.network.models.CourseDto
 
 fun CourseDto.toDomain(): Course {
@@ -10,7 +11,7 @@ fun CourseDto.toDomain(): Course {
         text = text,
         price = price,
         rate = rate,
-        startDate = startDate,
+        startDate = formatDate(startDate),
         hasLike = hasLike,
         publishDate = publishDate
     )
