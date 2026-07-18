@@ -33,7 +33,6 @@ data class CustomColors(
     val textSecondary: Color,
     val textHint: Color,
     val divider: Color,
-    val searchBackground: Color,
     val blueGradientStart: Color,
     val blueGradientEnd: Color,
     val orangeGradientStart: Color,
@@ -46,7 +45,6 @@ val CustomColorScheme = CustomColors(
     textSecondary = CourseColors.TextSecondary,
     textHint = CourseColors.TextHint,
     divider = CourseColors.Divider,
-    searchBackground = CourseColors.SearchBackground,
     blueGradientStart = CourseColors.BlueGradientStart,
     blueGradientEnd = CourseColors.BlueGradientEnd,
     orangeGradientStart = CourseColors.OrangeGradientStart,
@@ -96,9 +94,9 @@ fun textFieldColors() = TextFieldDefaults.colors(
 
 @Composable
 fun searchFieldColors() = TextFieldDefaults.colors(
-    focusedContainerColor = CustomColorScheme.searchBackground,
-    unfocusedContainerColor = CustomColorScheme.searchBackground,
-    disabledContainerColor = CustomColorScheme.searchBackground,
+    focusedContainerColor = CourseColors.Surface,
+    unfocusedContainerColor = CourseColors.Surface,
+    disabledContainerColor = CourseColors.Surface,
     focusedIndicatorColor = Color.Transparent,
     unfocusedIndicatorColor = Color.Transparent,
     disabledIndicatorColor = Color.Transparent

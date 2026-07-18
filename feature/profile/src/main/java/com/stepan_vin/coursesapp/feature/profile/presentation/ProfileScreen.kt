@@ -1,5 +1,7 @@
 package com.stepan_vin.coursesapp.feature.profile.presentation
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -7,95 +9,130 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Divider
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.stepan_vin.coursesapp.core.designsystem.theme.CourseColors
+import com.stepan_vin.coursesapp.core.designsystem.theme.CourseAppTheme
+import com.stepan_vin.coursesapp.core.designsystem.theme.CourseTypography
+import com.stepan_vin.coursesapp.core.designsystem.theme.customColors
 import com.stepan_vin.coursesapp.feature.profile.R
 import com.stepan_vin.coursesapp.feature.profile.components.ProfileCourseCard
 
 @Composable
 fun ProfileScreen() {
+    ProfileScreenContent()
+}
+
+@Composable
+fun ProfileScreenContent(
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp)
     ) {
         Text(
             text = stringResource(R.string.profile_title),
-            style = TextStyle(
-                fontSize = 24.sp,
-                color = CourseColors.TextPrimary,
-                fontWeight = FontWeight.Bold
+            style = CourseTypography.titleLarge.copy(
+                color = MaterialTheme.colorScheme.onBackground
             ),
-            modifier = Modifier.padding(vertical = 16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 16.dp)
         )
 
-        ProfileMenuItem(
-            title = stringResource(R.string.profile_support),
-            onClick = {}
-        )
+        Card(
+            modifier = modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp)),
+            shape = RoundedCornerShape(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            )
+        ) {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                ProfileMenuItem(
+                    title = stringResource(R.string.profile_support),
+                    onClick = {}
+                )
 
-        Divider(
-            color = CourseColors.Surface,
-            modifier = Modifier.padding(horizontal = 8.dp)
-        )
+                HorizontalDivider(
+                    thickness = 1.dp,
+                    color = MaterialTheme.customColors.divider,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
 
-        ProfileMenuItem(
-            title = stringResource(R.string.profile_settings),
-            onClick = {}
-        )
+                ProfileMenuItem(
+                    title = stringResource(R.string.profile_settings),
+                    onClick = {}
+                )
 
-        Divider(
-            color = CourseColors.Surface,
-            modifier = Modifier.padding(horizontal = 8.dp)
-        )
+                HorizontalDivider(
+                    thickness = 1.dp,
+                    color = MaterialTheme.customColors.divider,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
 
-        ProfileMenuItem(
-            title = stringResource(R.string.profile_logout),
-            onClick = {},
-            textColor = CourseColors.TextSecondary
-        )
+                ProfileMenuItem(
+                    title = stringResource(R.string.profile_logout),
+                    onClick = {}
+                )
+            }
+        }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         Text(
             text = stringResource(R.string.profile_my_courses),
-            style = TextStyle(
-                fontSize = 18.sp,
-                color = CourseColors.TextPrimary,
-                fontWeight = FontWeight.SemiBold
+            style = CourseTypography.titleLarge.copy(
+                color = MaterialTheme.colorScheme.onBackground
             ),
-            modifier = Modifier.padding(vertical = 8.dp)
+            modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        ProfileCourseCard(
-            title = "3D-дженералист",
-            rating = "3.9",
-            date = "10 Сентября 2024",
-            progress = 0.5f,
-            progressText = "50%",
-            lessons = "22/44 уроков"
-        )
-
-        ProfileCourseCard(
-            title = "Java-разработчик с нуля",
-            rating = "4.9",
-            date = "29 мая 2024",
-            progress = 0.3f,
-            progressText = "30%",
-            lessons = "15/48 уроков"
-        )
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            item {
+                ProfileCourseCard(
+                    title = "3D-дженералист",
+                    rating = "3.9",
+                    date = "10 Сентября 2024",
+                    progress = 0.5f,
+                    completedLessons = "22",
+                    lessons = "/44 уроков",
+                    isFavorite = true
+                )
+            }
+            item {
+                ProfileCourseCard(
+                    title = "Java-разработчик с нуля",
+                    rating = "4.9",
+                    date = "29 мая 2024",
+                    progress = 0.3f,
+                    completedLessons = "15",
+                    lessons = "/48 уроков",
+                    isFavorite = false
+                )
+            }
+        }
     }
 }
 
@@ -103,30 +140,40 @@ fun ProfileScreen() {
 private fun ProfileMenuItem(
     title: String,
     onClick: () -> Unit,
-    textColor: androidx.compose.ui.graphics.Color = CourseColors.TextPrimary
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 14.dp, horizontal = 8.dp),
+            .height(40.dp)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = title,
-            style = TextStyle(
-                fontSize = 16.sp,
-                color = textColor,
-                fontWeight = FontWeight.Medium
-            )
+            style = CourseTypography.labelMedium.copy(
+                color = MaterialTheme.colorScheme.onBackground
+            ),
+            modifier = Modifier.weight(1f)
         )
-
-        Spacer(modifier = Modifier.weight(1f))
 
         Icon(
             painter = painterResource(id = R.drawable.chevron_right),
-            contentDescription = "Перейти",
-            tint = CourseColors.TextHint,
-            modifier = Modifier.width(20.dp)
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.size(12.dp)
         )
+    }
+}
+
+@Preview(
+    name = "Profile Screen",
+    showSystemUi = false
+)
+@Composable
+private fun ProfileScreenPreview() {
+    CourseAppTheme {
+        ProfileScreenContent()
     }
 }
