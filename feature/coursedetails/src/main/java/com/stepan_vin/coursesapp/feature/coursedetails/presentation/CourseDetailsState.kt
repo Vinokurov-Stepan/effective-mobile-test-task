@@ -6,5 +6,5 @@ data class CourseDetailsState(
     val isLoading: Boolean = true,
     val course: Course? = null,
     val isFavorite: Boolean = false,
-    val error: String? = null
+    val isError: Boolean = false
 )
