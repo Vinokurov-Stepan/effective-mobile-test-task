@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Заголовок -->
+    <!-- Заголовки -->
     <string name="profile_title">Профиль</string>
+    <string name="profile_my_courses">Ваши курсы</string>
 
     <!-- Меню -->
     <string name="profile_support">Написать в поддержку</string>
     <string name="profile_settings">Настройки</string>
     <string name="profile_logout">Выйти из аккаунта</string>
-
-    <!-- Секция курсов -->
-    <string name="profile_my_courses">Ваши курсы</string>
 </resources>

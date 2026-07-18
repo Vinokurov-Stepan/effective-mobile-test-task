@@ -5,7 +5,6 @@ import androidx.compose.ui.graphics.Color
 object CourseColors {
     val Background = Color(0xFF151515)
     val Surface = Color(0xFF24252A)
-    val SearchBackground = Color(0xFF24252A)
     val TextFieldBackground = Color(0xFF32333A)
     val BookmarkBackground = Color(0x4D32333A)
     val TextPrimary = Color(0xFFF2F2F3)

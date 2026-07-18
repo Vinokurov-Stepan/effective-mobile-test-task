@@ -139,7 +139,7 @@ fun MainScreenContent(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(
-                            color = MaterialTheme.customColors.searchBackground,
+                            color = MaterialTheme.colorScheme.surface,
                             shape = RoundedCornerShape(28.dp)
                         ),
                     contentAlignment = Alignment.Center
