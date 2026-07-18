@@ -36,14 +36,14 @@ class CourseDetailsViewModel(
                             isLoading = false,
                             course = course,
                             isFavorite = course.hasLike,
-                            error = null
+                            isError = false
                         )
                     }
                 } else {
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            error = "Курс не найден"
+                            isError = true
                         )
                     }
                 }
@@ -51,7 +51,7 @@ class CourseDetailsViewModel(
                 _state.update {
                     it.copy(
                         isLoading = false,
-                        error = e.message ?: "Ошибка загрузки курса"
+                        isError = true
                     )
                 }
             }
